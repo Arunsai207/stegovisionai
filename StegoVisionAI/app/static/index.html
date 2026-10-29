@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d17">
+<title>StegoVision AI — Forensic Workspace</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#"><span class="brand-mark">SV</span><span><b>StegoVision</b><small>AI FORENSICS</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-item active" data-page="overview"><span>◈</span> Overview</button>
+    <button class="nav-item" data-page="encode"><span>⌁</span> Encode message</button>
+    <button class="nav-item" data-page="decode"><span>⌘</span> Extract message</button>
+    <button class="nav-item" data-page="forensics"><span>⌕</span> Image forensics</button>
+    <button class="nav-item" data-page="advanced"><span>⌘</span> Advanced lab</button>
+    <button class="nav-item" data-page="history"><span>▤</span> Analysis history</button>
+    <div class="sidebar-bottom"><span class="status-dot"></span> LOCAL WORKSPACE <small>v1.0.0 · Academic edition</small></div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-button mobile-only" aria-label="Open menu">☰</button>
+      <div><div class="eyebrow">IMAGE INTELLIGENCE PLATFORM</div><div class="top-title" id="topTitle">Overview</div></div>
+      <div class="top-actions"><span class="secure-label">● SESSION SECURE</span><div class="avatar" id="avatar">?</div><button id="logoutBtn" class="text-button">Sign out</button></div>
+    </header>
+    <div id="welcomeBanner" class="welcome-banner hidden"><span class="welcome-icon">✦</span><div><b id="welcomeText">Welcome to StegoVision AI</b><p>Your forensic workspace is ready.</p></div><button class="close-banner" id="closeWelcome" aria-label="Dismiss">×</button></div>
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    <section class="page active" id="page-overview">
+      <div class="hero">
+        <div><div class="eyebrow cyan">DIGITAL FORENSICS / IMAGE ANALYSIS</div><h1>See beyond<br><span>the visible.</span></h1><p>Inspect image properties, securely embed messages in PNG files, and organize forensic analysis in one workspace.</p><div class="hero-actions"><button class="primary-btn" data-goto="forensics">Analyze an image <span>↗</span></button><button class="secondary-btn" data-goto="encode">Create stego image</button></div></div>
+        <div class="hero-visual"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core"><div class="core-inner">SV<span>AI</span></div></div><div class="orbit-label label-a">PIXEL ANALYSIS</div><div class="orbit-label label-b">EVIDENCE HASH</div><div class="orbit-label label-c">LSB WORKFLOW</div></div>
+      </div>
+      <div class="section-heading"><div><div class="eyebrow">YOUR WORKSPACE</div><h2>Control center</h2></div><span class="live-pill"><i></i> SYSTEM READY</span></div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-icon">⌕</div><span>ANALYSES SAVED</span><strong id="statAnalyses">0</strong><small>In your account history</small></div>
+        <div class="stat-card"><div class="stat-icon">◉</div><span>SUPPORTED INPUT</span><strong>20 MB</strong><small>Maximum image upload</small></div>
+        <div class="stat-card"><div class="stat-icon">⌁</div><span>ENCODING MODE</span><strong>PNG LSB</strong><small>Encrypted text payload</small></div>
+        <div class="stat-card"><div class="stat-icon">◇</div><span>MODEL STATUS</span><strong class="small-strong">Research starter</strong><small>No trained detector bundled</small></div>
+      </div>
+      <div class="section-heading"><div><div class="eyebrow">QUICK ACTIONS</div><h2>Start an investigation</h2></div></div>
+      <div class="action-grid">
+        <button class="action-card" data-goto="encode"><span class="action-symbol">⌁</span><b>Encode a message</b><small>Encrypt and embed text in a PNG</small><span class="action-arrow">↗</span></button>
+        <button class="action-card" data-goto="decode"><span class="action-symbol">⌘</span><b>Extract a message</b><small>Decode supported StegoVision images</small><span class="action-arrow">↗</span></button>
+        <button class="action-card" data-goto="forensics"><span class="action-symbol">⌕</span><b>Inspect image evidence</b><small>Hash, dimensions, metadata and notes</small><span class="action-arrow">↗</span></button>
+      </div>
+      <div class="notice"><span>ⓘ</span><div><b>Research transparency</b><p>Metadata and statistical indicators are not proof of hidden content. A reliable deep-learning detector requires a labeled dataset, model training, and independent evaluation.</p></div></div>
+    </section>
+
+    <section class="page" id="page-encode">
+      <div class="page-intro"><div class="eyebrow cyan">PAYLOAD CREATION</div><h1>Encode a <span>message.</span></h1><p>Encrypt text and embed it into the least-significant bits of a PNG image.</p></div>
+      <div class="work-grid"><div class="panel"><div class="panel-head"><div><span class="step">01</span><h3>Choose carrier image</h3></div><span class="panel-tag">PNG OUTPUT</span></div><label class="upload-zone" for="encodeFile"><input id="encodeFile" type="file" accept="image/*"><span class="upload-icon">↑</span><b>Drop an image or browse</b><small>PNG recommended · up to 20 MB</small><span class="file-name" id="encodeFileName">No file selected</span></label><label class="field-label" for="secretMessage">SECRET MESSAGE</label><textarea id="secretMessage" rows="5" maxlength="5000" placeholder="Enter the text you want to embed…"></textarea><div class="field-row"><label class="field-label" for="encodePass">PASSPHRASE</label><span class="hint">Minimum 8 characters</span></div><input id="encodePass" type="password" autocomplete="new-password" placeholder="Create a strong passphrase"><button class="primary-btn full-btn" id="encodeBtn">Encrypt &amp; encode <span>↗</span></button><p class="microcopy">Use PNG output. Re-saving through lossy formats may destroy the hidden payload.</p></div><div class="panel result-panel"><div class="panel-head"><div><span class="step">02</span><h3>Output</h3></div><span class="panel-tag">RESULT</span></div><div id="encodeResult" class="empty-result"><div class="empty-symbol">⌁</div><b>Awaiting input</b><p>Your encoded PNG will be available here after processing.</p></div></div></div>
+    </section>
+
+    <section class="page" id="page-decode">
+      <div class="page-intro"><div class="eyebrow cyan">PAYLOAD EXTRACTION</div><h1>Reveal the <span>message.</span></h1><p>Extract text from a PNG encoded with StegoVision AI and the correct passphrase.</p></div>
+      <div class="work-grid"><div class="panel"><div class="panel-head"><div><span class="step">01</span><h3>Source image</h3></div><span class="panel-tag">PNG</span></div><label class="upload-zone" for="decodeFile"><input id="decodeFile" type="file" accept="image/*"><span class="upload-icon">↑</span><b>Choose encoded image</b><small>Upload the downloaded *_stegovision.png file—not the original cover image—and enter the same passphrase. You can also use “Extract this PNG now” immediately after encoding.</small><span class="file-name" id="decodeFileName">No file selected</span></label><label class="field-label" for="decodePass">PASSPHRASE</label><input id="decodePass" type="password" autocomplete="current-password" placeholder="Enter the original passphrase"><button class="primary-btn full-btn" id="decodeBtn">Extract message <span>↗</span></button></div><div class="panel result-panel"><div class="panel-head"><div><span class="step">02</span><h3>Extracted payload</h3></div><span class="panel-tag">DECRYPTED TEXT</span></div><div id="decodeResult" class="empty-result"><div class="empty-symbol">⌘</div><b>No payload extracted</b><p>The decoded message will appear here.</p></div></div></div>
+    </section>
+
+    <section class="page" id="page-forensics">
+      <div class="page-intro"><div class="eyebrow cyan">EVIDENCE INSPECTION</div><h1>Image <span>forensics.</span></h1><p>Generate an integrity hash and inspect file properties and basic indicators.</p></div>
+      <div class="panel forensic-upload"><label class="upload-zone compact" for="forensicFile"><input id="forensicFile" type="file" accept="image/*"><span class="upload-icon">↑</span><b>Upload image for analysis</b><small>Supported image files · maximum 20 MB</small><span class="file-name" id="forensicFileName">No file selected</span></label><button class="primary-btn" id="analyzeBtn">Run analysis <span>↗</span></button></div>
+      <div id="forensicResult" class="hidden"></div>
+      <div class="notice"><span>⚑</span><div><b>Interpret results carefully</b><p>This tool does not make a definitive steganography determination. Hashes identify exact file bytes; metadata and entropy alone cannot prove whether hidden content exists.</p></div></div>
+    </section>
+
+    <section class="page" id="page-advanced">
+      <div class="page-intro"><div class="eyebrow cyan">VISUAL INTELLIGENCE</div><h1>Advanced <span>lab.</span></h1><p>Compare images, explore visual similarity, run optional face detection, and review evidence-backed findings.</p></div>
+      <div class="advanced-grid">
+        <div class="panel"><div class="panel-head"><div><span class="step">01</span><h3>Dual-image comparison</h3></div><span class="panel-tag">PIXEL + HASH</span></div>
+          <label class="field-label" for="compareA">REFERENCE IMAGE</label><input id="compareA" type="file" accept="image/*" class="file-input">
+          <label class="field-label" for="compareB">IMAGE TO COMPARE</label><input id="compareB" type="file" accept="image/*" class="file-input">
+          <button class="primary-btn full-btn" id="compareBtn">Compare images ↗</button><div id="compareResult" class="advanced-result empty-result">Choose two images to compare file hashes, dimensions, and pixel-level differences.</div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><span class="step">02</span><h3>Face detection</h3></div><span class="panel-tag">OPTIONAL OPENCV</span></div>
+          <label class="upload-zone compact" for="faceFile"><input id="faceFile" type="file" accept="image/*"><span class="upload-icon">◉</span><b>Choose an image</b><small>Detect face regions locally when OpenCV is installed</small><span class="file-name" id="faceFileName">No file selected</span></label>
+          <button class="primary-btn full-btn" id="faceBtn">Detect faces ↗</button><div id="faceResult" class="advanced-result empty-result">Face detection locates face regions only; it does not identify a person. OpenCV is installed by the Windows launcher.</div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><span class="step">03</span><h3>Visual similarity</h3></div><span class="panel-tag">EXPERIMENTAL</span></div>
+          <p class="microcopy">Compares normalized color histograms. This is a coarse visual signal, not semantic matching or face identity verification.</p>
+          <button class="secondary-btn full-btn" id="similarityBtn">Calculate similarity from selected images</button><div id="similarityResult" class="advanced-result empty-result">Select both reference images above first.</div>
+        </div>
+        <div class="panel"><div class="panel-head"><div><span class="step">04</span><h3>Workspace analytics</h3></div><button class="secondary-btn" id="refreshAnalytics">Refresh</button></div><div id="analyticsResult" class="advanced-result empty-result">Run analyses to populate your activity summary.</div></div>
+      </div>
+      <div class="notice"><span>ⓘ</span><div><b>Model transparency</b><p>This build includes reproducible file and pixel comparisons. It does not ship a trained steganography classifier, deepfake detector, face-embedding model, or identity verification model. Those require separately validated models and test datasets.</p></div></div>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="page-intro"><div class="eyebrow cyan">CASE ACTIVITY</div><h1>Analysis <span>history.</span></h1><p>Review recent forensic image inspections saved to your account.</p></div>
+      <div class="panel"><div class="panel-head"><div><span class="step">LOG</span><h3>Recent analyses</h3></div><div class="history-actions"><button class="secondary-btn" id="refreshHistory">Refresh</button><button class="secondary-btn" id="clearHistory">Clear all records</button></div></div><div id="historyTable"><div class="empty-result"><div class="empty-symbol">▤</div><b>No analyses yet</b><p>Inspect an image to create your first history entry.</p></div></div></div>
+    </section>
+    <footer><span>STEGOVISION AI <i>•</i> ACADEMIC EDITION</span><span>For research and authorized analysis only</span></footer>
+  </main>
+</div>
+
+<div id="authScreen" class="auth-screen">
+  <div class="auth-decoration"><div class="auth-orbit a1"></div><div class="auth-orbit a2"></div><div class="auth-logo">SV<span>AI</span></div><div class="auth-caption">IMAGE INTELLIGENCE<br><b>BEYOND THE VISIBLE.</b></div></div>
+  <div class="auth-main"><a class="brand auth-brand"><span class="brand-mark">SV</span><span><b>StegoVision</b><small>AI FORENSICS</small></span></a>
+    <div class="auth-card">
+      <div class="eyebrow cyan">SECURE WORKSPACE ACCESS</div><h1 id="authTitle">Welcome back.</h1><p id="authSubtitle">Sign in to continue to your forensic workspace.</p>
+      <div id="authError" class="form-error hidden"></div>
+      <form id="loginForm"><label class="field-label" for="loginEmail">EMAIL ADDRESS</label><input id="loginEmail" type="email" required autocomplete="email" placeholder="you@example.com"><label class="field-label" for="loginPassword">PASSWORD</label><input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Enter your password"><button class="primary-btn full-btn" type="submit">Sign in <span>↗</span></button></form>
+      <form id="registerForm" class="hidden"><label class="field-label" for="registerName">FULL NAME</label><input id="registerName" required minlength="2" maxlength="80" autocomplete="name" placeholder="Your name"><label class="field-label" for="registerEmail">EMAIL ADDRESS</label><input id="registerEmail" type="email" required autocomplete="email" placeholder="you@example.com"><label class="field-label" for="registerPassword">CREATE PASSWORD</label><input id="registerPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"><label class="field-label" for="registerConfirm">CONFIRM PASSWORD</label><input id="registerConfirm" type="password" required minlength="8" autocomplete="new-password" placeholder="Repeat your password"><button class="primary-btn full-btn" type="submit">Create account <span>↗</span></button></form>
+      <div class="auth-switch"><span id="switchText">New to StegoVision AI?</span> <button id="switchAuth" type="button">Create an account</button></div>
+      <div class="auth-footnote"><span class="status-dot"></span> Local academic workspace · Passwords are hashed</div>
+    </div>
+  </div>
+</div>
+<script src="/static/app.js"></script>
+</body></html>

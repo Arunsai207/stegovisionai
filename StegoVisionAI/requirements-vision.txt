@@ -1,0 +1,2 @@
+# Compatibility file: vision dependencies are now installed by requirements.txt.
+-r requirements.txt
